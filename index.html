@@ -3,166 +3,283 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brandon Woo — Data Science Portfolio</title>
-  <meta name="description" content="Data science portfolio of Brandon Woo, with projects in sports analytics, machine learning, and applied statistics." />
+  <title>Brandon Woo — Sports Data Science Portfolio</title>
+  <meta name="description" content="Sports data science portfolio of Brandon Woo, focused on baseball analytics, machine learning, Bayesian modeling, and predictive systems." />
+
   <style>
     :root {
-      --bg: #0f1115;
-      --fg: #e6e6eb;
-      --muted: #a1a1b3;
-      --card: #161a22;
-      --accent: #5ddcff;
-      --border: #22283a;
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #555;
+      --card: #f8f9fb;
+      --accent: #1f6feb;
+      --border: #e5e7eb;
     }
+
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-    a { color: var(--accent); text-decoration: none; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
     a:hover { text-decoration: underline; }
-    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
-    h1 { font-size: 40px; margin: 0 0 10px; letter-spacing: -0.02em; }
-    .subtitle { color: var(--muted); font-size: 18px; max-width: 760px; line-height: 1.4; }
-    .links { margin-top: 18px; display: flex; gap: 14px; flex-wrap: wrap; }
-    .links a { border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; background: transparent; font-size: 14px; }
-    section { margin-top: 64px; }
-    h2 { font-size: 24px; margin-bottom: 18px; letter-spacing: -0.01em; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 0; display: flex; flex-direction: column; overflow: hidden; }
-    .thumb { width: 100%; aspect-ratio: 16 / 9; background: #0b0d12; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; border-bottom: 1px solid var(--border); }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .card-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-    .card-body h3 { margin: 0; font-size: 18px; }
-    .card-body p { margin: 0; color: var(--muted); line-height: 1.45; }
-    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
-    .tag { font-size: 12px; border: 1px solid var(--border); padding: 4px 8px; border-radius: 999px; color: var(--muted); }
-    .card-body .actions { margin-top: auto; display: flex; gap: 12px; }
-    .about { max-width: 780px; color: var(--muted); line-height: 1.65; }
-    footer { margin-top: 96px; color: var(--muted); font-size: 14px; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+    }
+
+    /* HERO */
+    h1 {
+      font-size: 40px;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      max-width: 760px;
+    }
+
+    .links {
+      margin-top: 20px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    section { margin-top: 80px; }
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 12px;
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--muted);
+    }
+
+    .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    .about {
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      margin-top: 100px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
+
+    <!-- NAVIGATION -->
+    <nav>
+      <div><strong>Brandon Woo</strong></div>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/airwoo" target="_blank">GitHub</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
     <header>
-      <div style="display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;">
-        <div>
-          <img src="images/headshot-placeholder.jpg" alt="Brandon Woo headshot" style="width:160px;height:160px;object-fit:cover;border-radius:12px;border:1px solid var(--border);" />
-        </div>
-        <div>
-          <h1>Brandon Woo</h1>
-          <div class="subtitle">
-            Data scientist focused on sports analytics, machine learning, and statistical modeling. I’m especially interested in MLB and NBA data, and in building analyses that turn messy data into clear, actionable insight.
-          </div>
-          <div class="links">
-            <a href="https://github.com/airwoo" target="_blank">GitHub</a>
-            <a href="assets/Brandon_Woo_Resume.pdf" target="_blank">Resume (PDF)</a>
-            <a href="mailto:youremail@example.com">Email</a>
-            <a href="#">LinkedIn</a>
-          </div>
-        </div>
+      <h1>Sports Data Scientist</h1>
+      <div class="subtitle">
+        I specialize in baseball analytics, machine learning, and probabilistic modeling. 
+        My work focuses on building end-to-end analytical systems that transform raw game data 
+        into predictive insight and decision-support tools for sports organizations.
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/airwoo" target="_blank">GitHub</a>
+        <a href="assets/Brandon_Woo_Resume.pdf" target="_blank">Resume (PDF)</a>
+        <a href="mailto:youremail@example.com">Email</a>
+        <a href="#">LinkedIn</a>
       </div>
     </header>
 
+    <!-- PROJECTS -->
     <section id="projects">
-      <h2>Selected Projects</h2>
+      <h2>Baseball & Sports Analytics Projects</h2>
+
       <div class="grid">
+
         <div class="card">
-          <div class="thumb"><img src="images/mlb1-placeholder.png" alt="MLB Project 1"></div>
-          <div class="card-body">
-            <h3>MLB Project 1</h3>
-            <p>Brief description of MLB Project 1.</p>
-            <div class="tags">
-              <span class="tag">MLB</span>
-              <span class="tag">Machine Learning</span>
-            </div>
-            <div class="actions">
-              <a href="https://github.com/airwoo/mlb1" target="_blank">GitHub</a>
-              <a href="projects/mlb1.html" target="_blank">Writeup</a>
-            </div>
+          <h3>Expected Batting Average (xBA) Model</h3>
+          <p>
+            Predictive modeling of batted-ball outcomes using Statcast data, 
+            comparing logistic regression, XGBoost, and neural networks.
+          </p>
+          <div class="tags">
+            <span class="tag">MLB</span>
+            <span class="tag">Regression</span>
+            <span class="tag">XGBoost</span>
+            <span class="tag">PyTorch</span>
+          </div>
+          <div class="actions">
+            <a href="#">GitHub (Coming Soon)</a>
+            <a href="#">Writeup (Coming Soon)</a>
           </div>
         </div>
+
         <div class="card">
-          <div class="thumb"><img src="images/mlb2-placeholder.png" alt="MLB Project 2"></div>
-          <div class="card-body">
-            <h3>MLB Project 2</h3>
-            <p>Brief description of MLB Project 2.</p>
-            <div class="tags">
-              <span class="tag">MLB</span>
-              <span class="tag">Statistics</span>
-            </div>
-            <div class="actions">
-              <a href="https://github.com/airwoo/mlb2" target="_blank">GitHub</a>
-              <a href="projects/mlb2.html" target="_blank">Writeup</a>
-            </div>
+          <h3>Pitch Type Prediction Model</h3>
+          <p>
+            Multi-class classification of MLB pitch types using velocity, spin rate,
+            release metrics, and contextual game-state features.
+          </p>
+          <div class="tags">
+            <span class="tag">MLB</span>
+            <span class="tag">Classification</span>
+            <span class="tag">Neural Networks</span>
+          </div>
+          <div class="actions">
+            <a href="#">GitHub (Coming Soon)</a>
+            <a href="#">Writeup (Coming Soon)</a>
           </div>
         </div>
+
         <div class="card">
-          <div class="thumb"><img src="images/nba1-placeholder.png" alt="NBA Project 1"></div>
-          <div class="card-body">
-            <h3>NBA Project 1</h3>
-            <p>Brief description of NBA Project 1.</p>
-            <div class="tags">
-              <span class="tag">NBA</span>
-              <span class="tag">Data Analysis</span>
-            </div>
-            <div class="actions">
-              <a href="https://github.com/airwoo/nba1" target="_blank">GitHub</a>
-              <a href="projects/nba1.html" target="_blank">Writeup</a>
-            </div>
+          <h3>Run Expectancy & Win Probability (RE24 + WPA)</h3>
+          <p>
+            State-based modeling of run expectancy and win probability 
+            with Bayesian smoothing to address sparse game states.
+          </p>
+          <div class="tags">
+            <span class="tag">MLB</span>
+            <span class="tag">Bayesian Modeling</span>
+            <span class="tag">Probabilistic Systems</span>
+          </div>
+          <div class="actions">
+            <a href="#">GitHub (Coming Soon)</a>
+            <a href="#">Writeup (Coming Soon)</a>
           </div>
         </div>
+
         <div class="card">
-          <div class="thumb"><img src="images/nba2-placeholder.png" alt="NBA Project 2"></div>
-          <div class="card-body">
-            <h3>NBA Project 2</h3>
-            <p>Brief description of NBA Project 2.</p>
-            <div class="tags">
-              <span class="tag">NBA</span>
-              <span class="tag">Modeling</span>
-            </div>
-            <div class="actions">
-              <a href="https://github.com/airwoo/nba2" target="_blank">GitHub</a>
-              <a href="projects/nba2.html" target="_blank">Writeup</a>
-            </div>
+          <h3>Pitcher Similarity Search (Embeddings)</h3>
+          <p>
+            Learning player embeddings to identify comparable pitchers using 
+            representation learning and approximate nearest neighbor search.
+          </p>
+          <div class="tags">
+            <span class="tag">MLB</span>
+            <span class="tag">Representation Learning</span>
+            <span class="tag">ANN Search</span>
+          </div>
+          <div class="actions">
+            <a href="#">GitHub (Coming Soon)</a>
+            <a href="#">Writeup (Coming Soon)</a>
           </div>
         </div>
-        <div class="card">
-          <div class="thumb"><img src="images/sports-ml1-placeholder.png" alt="Sports ML Project 1"></div>
-          <div class="card-body">
-            <h3>Sports ML Project 1</h3>
-            <p>Brief description of Sports ML Project 1.</p>
-            <div class="tags">
-              <span class="tag">Machine Learning</span>
-              <span class="tag">Sports</span>
-            </div>
-            <div class="actions">
-              <a href="https://github.com/airwoo/sportsml1" target="_blank">GitHub</a>
-              <a href="projects/sportsml1.html" target="_blank">Writeup</a>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="thumb"><img src="images/sports-ml2-placeholder.png" alt="Sports ML Project 2"></div>
-          <div class="card-body">
-            <h3>Sports ML Project 2</h3>
-            <p>Brief description of Sports ML Project 2.</p>
-            <div class="tags">
-              <span class="tag">Machine Learning</span>
-              <span class="tag">Data Science</span>
-            </div>
-            <div class="actions">
-              <a href="https://github.com/airwoo/sportsml2" target="_blank">GitHub</a>
-              <a href="projects/sportsml2.html" target="_blank">Writeup</a>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
 
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About</h2>
+      <div class="about">
+        I am currently seeking data science opportunities in sports analytics, 
+        baseball operations, and applied machine learning. My interests include 
+        predictive modeling, Bayesian methods, neural networks, and building 
+        scalable analytical tools that inform strategic decision-making.
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact">
       <h2>Contact</h2>
       <div class="about">
-        <p>If you’re hiring for data science roles—especially in sports analytics—I’d love to chat.</p>
+        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
         <p>
-          <a href="mailto:youremail@example.com">youremail@example.com</a> ·
           <a href="https://github.com/airwoo" target="_blank">GitHub</a> ·
           <a href="#">LinkedIn</a>
         </p>
@@ -172,10 +289,11 @@
     <footer>
       © <span id="year"></span> Brandon Woo
     </footer>
+
   </div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
